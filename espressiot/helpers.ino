@@ -1,14 +1,12 @@
 //
 // ESPressIoT Controller for Espresso Machines
-// 2016-2021 by Roman Schmitz
 //
 // Helper Functions
-//
 
 String macToID(const uint8_t* mac) {
   String result;
   for (int i = 3; i < 6; ++i) {
-    result += String(mac[i], 16);
+    result += String(mac[i], HEX);
   }
   result.toUpperCase();
   return result;
@@ -17,7 +15,7 @@ String macToID(const uint8_t* mac) {
 String macToString(const uint8_t* mac) {
   String result;
   for (int i = 0; i < 6; ++i) {
-    result += String(mac[i], 16);
+    result += String(mac[i], HEX);
     if (i < 5) result += ":";
   }
   result.toUpperCase();
@@ -29,7 +27,7 @@ String statusAsJson() {
   String outputString;
 
   statusObject["time"] = time_now;
-  statusObject["mesauredTemperature"] = gInputTemp;
+  statusObject["measuredTemperature"] = gInputTemp;
   statusObject["targetTemperature"] = gTargetTemp;
   statusObject["heaterPower"] = gOutputPwr;
   statusObject["externalControlMode"] = externalControlMode;
